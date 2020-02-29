@@ -1,0 +1,1 @@
+call curl --location --request POST "https://torus-18.torusnode.com/jrpc" --header "Content-Type: application/json" --data-raw "{ "jsonrpc": "2.0", "method": "VerifierLookupRequest", "id": 10, "params": {"verifier": "google",        "verifier_id":"example@gmail.com"    }}"
