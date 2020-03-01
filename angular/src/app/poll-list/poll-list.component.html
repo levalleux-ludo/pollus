@@ -1,0 +1,60 @@
+<!-- <script defer src="poll-list.component.ts"></script> -->
+<div class="ui blue item inverted menu">
+  <h1> Polls </h1>
+</div>
+
+
+<div class="ui divider center aligned" >
+
+  <div class="ui card center aligned" *ngFor="let poll of polls; index as pollId">
+    <div class="content">
+      <a [title]="poll.name + ' details'" [routerLink]="['/polls', pollId]">
+        <div class="header">{{ poll.name }}</div>
+      </a>
+      <!-- <div class="meta">2 days ago</div> -->
+      <div class="description left" *ngFor="let option of poll.options">
+        <div> {{option}} </div>
+      </div>
+    </div>
+    <div class="extra content">
+      <i class="check icon"></i>
+      {{poll.votes}}
+    </div>
+    <div class="extra content">
+      <a [title]="poll.name + ' details'" [routerLink]="['/polls', pollId]">
+        <button class="ui button" (click)="submit()"> Detail </button>
+      </a>
+    </div>
+  </div>
+
+
+  <!-- <div class="ui card">
+    <div class="content">
+      <div class="header">{{ poll.name }}</div>
+    </div>
+    <div class="content" >
+      <h4 class="ui sub header"></h4>
+      <div class="ui small feed">
+        <div class="event">
+          <div class="content">
+            <div class="summary">
+               {{ poll.a }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="extra content">
+      <button class="ui button">Join Project</button>
+    </div>
+  </div> -->
+
+  <!-- <div class="ui segment">
+    <a [title]="poll.name + ' details'">
+      <h2 class="ui floated header">{{ poll.name }}</h2>
+    </a>
+    <div class="ui clearing divider"></div>
+    <p>jklhl</p>
+  </div> -->
+
+</div>

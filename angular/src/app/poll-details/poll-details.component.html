@@ -1,0 +1,23 @@
+
+
+<div *ngIf="poll" class="ui form">
+  <div class="grouped fields">
+    <h2>{{poll.name}}</h2>
+    <div class="field" *ngFor="let option of poll.options">
+      <div class="ui radio checkbox">
+        <input type="radio" name="example2" checked="checked">
+        <label>{{option}}</label>
+      </div>
+    </div>
+  </div>
+  <div class="ui submit button">Submit</div>
+</div>
+
+<!-- <form action="/my-handling-form-page" method="post">
+  <input type="radio" id="1" name="" value="1">
+  <label for="option1">Option 1</label><br>
+  <input type="radio" id="2" name="" value="2">
+  <label for="option2">Option 2</label><br>
+  <input type="radio" id="3" name="" value="3">
+  <label for="option3">Option 3</label>
+</form> -->
