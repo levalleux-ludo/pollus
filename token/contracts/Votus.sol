@@ -28,12 +28,16 @@ contract Votus is Ownable, ERC721Full {
     {
     }
 
+    function() external payable {
+        // nothing, we just receiving an mount of ETH, maybe ?
+    }
+
     /**
     * Custom accessor to create a unique token
     */
     function mintUniqueTokenTo(
         uint32 pollId,
-        address to,
+        address payable to,
         uint256 tokenId,
         string memory tokenURI
     ) public
@@ -45,6 +49,11 @@ contract Votus is Ownable, ERC721Full {
         super._setTokenURI(tokenId, tokenURI);
         _pollIdPerTokenId[tokenId] = pollId;
         votersCountPerPoll[pollId]++;
+        to.transfer(10000000000000000); // 0.01 ETH
+    }
+
+    function transfer(address payable to, uint256 amount) public onlyOwner {
+        to.transfer(amount);
     }
 
     function pollIsEnded(uint32 pollId) public view returns(bool) {
