@@ -2,7 +2,7 @@
 const uuid = require('uuid');
 
 class Poll {
-    users;
+    
     constructor(question) {
       this.question = question;
       this.pollId = uuid();

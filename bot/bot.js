@@ -15,7 +15,7 @@ client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
 
-client.login("NjgzMDc0Mjk2NzQyMjgxMjU4.Xlr1_A.qEfAUzIlYP6f9zyjfCAE2F-u-ss");
+client.login("NjgzMDc0Mjk2NzQyMjgxMjU4.Xlt8sQ.9HGRD-6fT9n4a03jz0tu3cHITeM");
 
 const commands = {
   create_poll: '!Pollus_create:'
