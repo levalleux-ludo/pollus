@@ -15,7 +15,7 @@ client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
 
-client.login("NjgzMDc0Mjk2NzQyMjgxMjU4.Xlt8sQ.9HGRD-6fT9n4a03jz0tu3cHITeM");
+client.login("NjgzMDc0Mjk2NzQyMjgxMjU4.XluCCw.8949x9GFbmNNpmNZDW6DjB1TZ4k");
 
 const commands = {
   create_poll: '!Pollus_create:'
@@ -35,17 +35,17 @@ function create_poll(msg) {
   let question = msg.content.substring(commands.create_poll.length).trim();
   let members = msg.guild.members;
   let poll = new Poll(question);
-  msg.reply("I'm going to create a poll for the question [" + poll.getQuestion() + "]")
-  msg.reply("Voters are :" + user_list);
   let user_list = [];
   for (let member of members.values()) {
     // console.log(member);
     if (!member.user.bot) {
       poll.addUser({verifier:"discord", verifier_id:member.user.id})
-      // user_list.push(member.user.username)
+      user_list.push(member.user.username)
       // let user = new User()
     }
   }
+  msg.reply("I'm going to create a poll for the question [" + poll.getQuestion() + "]")
+  msg.reply("Voters are :" + user_list);
 
   // const token = new Token(Poll.pollId)
 

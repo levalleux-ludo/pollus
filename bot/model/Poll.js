@@ -12,7 +12,7 @@ class Poll {
       return this.question;
     }
     addUser(torus_id) {
-        this.users.push(torus_id)
+        // this.users.push(torus_id)
     }
   }
 
