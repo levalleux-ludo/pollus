@@ -28,15 +28,6 @@
 							"name": "UserLogin",
 							"ownedViews": [
 								{
-									"_type": "UMLActivationView",
-									"_id": "AAAAAAFwzr4DnWfczI8=",
-									"font": "Arial;13;0",
-									"left": 235,
-									"top": 184,
-									"width": 14,
-									"height": 521
-								},
-								{
 									"_type": "UMLFrameView",
 									"_id": "AAAAAAFwzgmhKSnoBNk=",
 									"_parent": {
