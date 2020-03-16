@@ -1,31 +1,11 @@
 import { Poll } from '../model/Poll';
-import { fake_users } from '../users/users.service';
-import { TorusID } from '../users/TorusID';
 import { Voter } from '../model/Voter';
+import { TorusID } from '../users/TorusID';
 import { UserData } from '../users/UserData';
 import { votus } from '../web3/votus';
-import { create } from 'domain';
 
 const DAY_TO_MILLISEC = 24 * 60 * 60 * 1000;
 const defaultPollDuration = 1 * DAY_TO_MILLISEC; // convert in milliseconds
-
-// const fake_polls = [
-//   new Poll(
-//     'first question',
-//     new Date(Date.now() + defaultPollDuration),
-//     fake_users
-//   ),
-//   new Poll(
-//     'second question',
-//     new Date(Date.now() + defaultPollDuration),
-//     fake_users
-//   ),
-//   new Poll(
-//     'third question',
-//     new Date(Date.now() + defaultPollDuration),
-//     fake_users
-//   ),
-// ];
 
 class PollsService {
   private _pollsPerId: Map<number, Poll> = new Map<number, Poll>();
