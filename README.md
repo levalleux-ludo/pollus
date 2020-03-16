@@ -34,11 +34,11 @@ truffle compile
 
 ###### Local (Ganache)
 
-Configure Ganache to serve at http://127.0.0.1:8545
+Configure Ganache to serve at http://127.0.0.1:8545, with network_id = 5777
 
 ```console
 cd token
-truffle migrate
+truffle migrate --reset
 ```
 
 ###### Ropsten Testnet (via Infura)
@@ -60,7 +60,7 @@ Be sure the 1st account of this wallet owns a few ETH (to pay for the contract c
 
 ```console
 cd token
-truffle migrate --network ropsten
+truffle migrate --reset --network ropsten
 ```
 
 
