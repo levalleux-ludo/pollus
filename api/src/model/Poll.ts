@@ -29,7 +29,8 @@ export class Poll {
   private _request: PollRequest;
   private _result: PollResult;
   private _hasEnded = false;
-  private _pendingTokensToTransfer = new Map<TorusID, boolean>();
+  private _pendingTokensToTransfer = new Map<string, boolean>();
+  private _creationTx: string = '';
   constructor(question: string, expirationDate: Date, voters: Voter[]) {
     this._pollId = generateNewPollId();
     this._request = new PollRequest(
@@ -39,13 +40,24 @@ export class Poll {
       voters
     );
     this._result = new PollResult(this._request);
-    voters.forEach(voter =>
-      this._pendingTokensToTransfer.set(voter.torusId, true)
-    );
+    voters.forEach(voter => {
+      const userKey = sha1(voter.torusId);
+      console.log('add pending token for user', voter);
+      this._pendingTokensToTransfer.set(userKey, true);
+    });
   }
 
+  public get pollId() {
+    return this._pollId;
+  }
   public get request(): PollRequest {
     return this._request;
+  }
+  public get creationTx(): string {
+    return this._creationTx;
+  }
+  public set creationTx(value: string) {
+    this._creationTx = value;
   }
   public hasEnded(): boolean {
     return this._hasEnded;
@@ -57,6 +69,7 @@ export class Poll {
     this._hasEnded = true;
   }
   public addProposition(proposition: string) {
+    // TODO: must not accept new proposition if votes have already started
     this._request.propositions.push(proposition);
   }
   public vote(user: Voter) {
@@ -66,9 +79,14 @@ export class Poll {
     }
   }
   public pendingToken(userTorusId: TorusID): boolean | undefined {
-    return this._pendingTokensToTransfer.get(userTorusId);
+    const userKey = sha1(userTorusId);
+    console.log('look for pending token. userKey', userKey);
+    console.log(this._pendingTokensToTransfer.keys());
+    console.log(this._pendingTokensToTransfer.has(userKey));
+    return this._pendingTokensToTransfer.get(userKey);
   }
   public removePendingToken(userTorusId: TorusID) {
-    this._pendingTokensToTransfer.delete(userTorusId);
+    const userKey = sha1(userTorusId);
+    this._pendingTokensToTransfer.delete(userKey);
   }
 }

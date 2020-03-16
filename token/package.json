@@ -7,7 +7,7 @@
         "test": "test"
     },
     "scripts": {
-        "setenv:win": "echo copy/past the following line in console before launching truffle: 'for /F \"delims=;\" %I in (.secrets) do @call set \"%I\"'",
+        "setenv:win": "echo copy/past the following line in console before launching truffle: 'for /F \"delims=;\" %I in (../.secrets) do @call set \"%I\"'",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "",
