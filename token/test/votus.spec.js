@@ -55,12 +55,15 @@ contract('Testing Votus contract', function(accounts) {
     const ERROR_POLL_ALREADY_EXIST = createExceptionMessage('poll already exist');
     const ERROR_POLL_NOT_EXIST = createExceptionMessage('poll does not exist');
     const ERROR_VOTE_NOT_ENDED = createExceptionMessage('the vote shall be ended to get the results', false);
-
+    const ERROR_CONTRACT_BALANCE_TOO_LOW = createExceptionMessage('contract ETH balance is too low');
 
     it('should be able to create a poll', async() => {
         token = await Votus.new()
         await token.createPoll(pollId1, { from: accounts[0] });
         expect(await token.pollIsEnded(pollId1)).to.be.false
+    })
+    it('should throw an explicit error when calling mintUniqueTokenTo with an empty Ether balance', async() => {
+        await token.mintUniqueTokenTo(pollId1, account1, tokenId1, tokenUri1, { from: accounts[0] }).should.be.rejectedWith(ERROR_CONTRACT_BALANCE_TOO_LOW);
     })
     it('should be able to find an humble donator to give 1 ETH to my contract under test', async() => {
         let balance = await web3.eth.getBalance(token.address)

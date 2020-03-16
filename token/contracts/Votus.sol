@@ -5,6 +5,9 @@ import "../node_modules/@openzeppelin/contracts/ownership/Ownable.sol";
 
 contract Votus is Ownable, ERC721Full {
 
+    // the amount of ETH (in wei) given to each voter to allow him to pay fees for vote transaction
+    uint256 constant DONATION = 10000000000000000; // 0.01 ETH
+
     // Mapping from pollId to Mapping from voteProposition to votesCount
     mapping(uint32 => mapping (uint8 => uint32)) private _votes;
 
@@ -45,11 +48,12 @@ contract Votus is Ownable, ERC721Full {
         require (pollIdExists(pollId), "poll does not exist");
         require (!pollIsEnded(pollId), "poll is now ended");
         require (calledByCreator(pollId), "this method can only be called by the poll creator");
+        require (address(this).balance > 2*DONATION, "contract ETH balance is too low");
         super._mint(to, tokenId);
         super._setTokenURI(tokenId, tokenURI);
         _pollIdPerTokenId[tokenId] = pollId;
         votersCountPerPoll[pollId]++;
-        to.transfer(10000000000000000); // 0.01 ETH
+        to.transfer(DONATION); // 0.01 ETH
     }
 
     function transfer(address payable to, uint256 amount) public onlyOwner {

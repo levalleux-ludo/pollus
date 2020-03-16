@@ -93,6 +93,19 @@ module.exports = {
     },
 
     // Configure your compilers
+
+    // from https://ethereum.stackexchange.com/questions/78597/solidity-0-6-0-addressthis-balance-throws-error-invalid-opcode
+    compilers: {
+        solc: {
+            version: "0.5.16",
+            settings: {
+                optimizer: {
+                    enabled: true
+                },
+                evmVersion: "petersburg" // required to avoid error with address(this).balance
+            }
+        }
+    }
     // compilers: {
     //   solc: {
     //     version: "0.5.1",    // Fetch exact version from solc-bin (default: truffle's version)
